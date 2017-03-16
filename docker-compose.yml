@@ -3,6 +3,7 @@ version: '2'
 services:
     db:
         image: mysql
+        user: "1000:50"
         volumes:
             - "./.data/db:/var/lib/mysql"
         environment:
