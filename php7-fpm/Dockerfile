@@ -36,6 +36,7 @@ RUN "date"
 # Type docker-php-ext-install to see available extensions
 RUN docker-php-ext-install pdo pdo_mysql
 
+RUN docker-php-ext-install -j$(nproc) mysqli
 
 # # install xdebug
 # RUN pecl install xdebug
