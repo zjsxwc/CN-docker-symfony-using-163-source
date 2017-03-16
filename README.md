@@ -1,6 +1,6 @@
-#TODO
+# -
 
-需要安装国内的composer、与symfony3命令
+因为我习惯在vagrant外执行composer与symfony命令，所以把php image里的安装指令删掉了
 
 # Docker Symfony (PHP7-FPM - NGINX - MySQL - ELK)
 
