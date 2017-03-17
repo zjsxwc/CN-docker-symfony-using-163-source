@@ -13,6 +13,7 @@ services:
             MYSQL_PASSWORD: ${MYSQL_PASSWORD}
     php:
         build: php7-fpm
+        user: "1000:50"
         ports:
             - 9000:9000
         volumes:
