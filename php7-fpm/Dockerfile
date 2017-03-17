@@ -43,6 +43,10 @@ RUN "date"
 RUN docker-php-ext-install pdo pdo_mysql
 
 RUN docker-php-ext-install -j$(nproc) mysqli
+
+# RUN apt-cache search zlib
+RUN apt-get install zlib1g
+RUN apt-get install zlib1g-dev
 RUN docker-php-ext-install -j$(nproc) zip
 
 
