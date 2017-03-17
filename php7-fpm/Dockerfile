@@ -28,6 +28,12 @@ RUN composer --version
 
 RUN composer config -g repo.packagist composer https://packagist.phpcomposer.com
 
+RUN mkdir -p /usr/local/bin
+
+RUN curl -LsS https://symfony.com/installer -o /usr/local/bin/symfony
+
+RUN chmod a+x /usr/local/bin/symfony
+
 # Set timezone
 RUN rm /etc/localtime
 RUN ln -s /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
