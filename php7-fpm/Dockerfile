@@ -48,6 +48,9 @@ RUN docker-php-ext-install -j$(nproc) mysqli
 RUN apt-get install zlib1g
 RUN apt-get install zlib1g-dev
 RUN docker-php-ext-install -j$(nproc) zip
+RUN docker-php-ext-install -j$(nproc) bcmath
+
+RUN apt-get install nano
 
 
 RUN echo 'alias sf="php app/console"' >> ~/.bashrc
