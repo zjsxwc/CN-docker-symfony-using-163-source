@@ -49,8 +49,15 @@ RUN apt-get install zlib1g
 RUN apt-get install zlib1g-dev
 RUN docker-php-ext-install -j$(nproc) zip
 RUN docker-php-ext-install -j$(nproc) bcmath
+RUN pecl install igbinary
 
-RUN apt-get install nano
+RUN apt-get install wget -y
+RUN mkdir -p /tmp/rediscompile  && cd /tmp/rediscompile  && wget https://github.com/phpredis/phpredis/archive/3.1.2.zip  && unzip 3.1.2.zip  && docker-php-ext-configure /tmp/rediscompile/phpredis-3.1.2/ --enable-redis-igbinary  && docker-php-ext-install /tmp/rediscompile/phpredis-3.1.2/ && rm -r /tmp/rediscompile
+
+RUN apt-get install nano -y
+
+RUN echo "extension=igbinary.so" >> /usr/local/etc/php/conf.d/docker-php-ext-igbinary.ini
+
 
 
 RUN echo 'alias sf="php app/console"' >> ~/.bashrc
