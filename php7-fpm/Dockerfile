@@ -25,7 +25,12 @@ RUN apt-get update && apt-get install -y \
 RUN apt-get install -y build-essential
 
 # Install Composer
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+# RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
+RUN mkdir -p /tmp/composertmp 
+ADD composer-install.php /tmp/composertmp
+RUN cat /tmp/composertmp/composer-install.php | php -- --install-dir=/usr/local/bin --filename=composer
+
 RUN composer --version
 
 RUN composer config -g repo.packagist composer https://packagist.phpcomposer.com
@@ -55,7 +60,10 @@ RUN docker-php-ext-install -j$(nproc) bcmath
 RUN pecl install igbinary
 
 RUN apt-get install wget -y
-RUN mkdir -p /tmp/rediscompile  && cd /tmp/rediscompile  && wget https://github.com/phpredis/phpredis/archive/3.1.2.zip  && unzip 3.1.2.zip  && docker-php-ext-configure /tmp/rediscompile/phpredis-3.1.2/ --enable-redis-igbinary  && docker-php-ext-install /tmp/rediscompile/phpredis-3.1.2/ && rm -r /tmp/rediscompile
+RUN mkdir -p /tmp/rediscompile
+ADD 3.1.2.zip /tmp/rediscompile
+# cd /tmp/rediscompile  && wget https://github.com/phpredis/phpredis/archive/3.1.2.zip
+RUN cd /tmp/rediscompile && unzip 3.1.2.zip  && docker-php-ext-configure /tmp/rediscompile/phpredis-3.1.2/ --enable-redis-igbinary  && docker-php-ext-install /tmp/rediscompile/phpredis-3.1.2/ && rm -r /tmp/rediscompile
 
 RUN apt-get install nano -y
 
