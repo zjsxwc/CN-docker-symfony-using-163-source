@@ -49,7 +49,19 @@ RUN "date"
 
 # Type docker-php-ext-install to see available extensions
 RUN docker-php-ext-install pdo pdo_mysql
-RUN docker-php-ext-install gd
+
+RUN apt-get install -y \
+        libfreetype6-dev \
+        libmcrypt-dev \
+        libpng12-dev \
+        libjpeg-dev \
+        libpng-dev
+RUN docker-php-ext-configure gd \
+        --enable-gd-native-ttf \
+        --with-freetype-dir=/usr/include/freetype2 \
+        --with-png-dir=/usr/include \
+        --with-jpeg-dir=/usr/include \
+    && docker-php-ext-install gd
 
 RUN docker-php-ext-install -j$(nproc) mysqli
 
