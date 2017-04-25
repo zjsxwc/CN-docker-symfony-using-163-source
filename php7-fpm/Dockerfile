@@ -87,4 +87,7 @@ RUN echo "extension=igbinary.so" >> /usr/local/etc/php/conf.d/docker-php-ext-igb
 RUN echo 'alias sf="php app/console"' >> ~/.bashrc
 RUN echo 'alias sf3="php bin/console"' >> ~/.bashrc
 
+RUN echo 'session.cookie_lifetime = 86400' > /usr/local/etc/php/php.ini
+RUN echo 'session.gc_maxlifetime = 86400' >> /usr/local/etc/php/php.ini
+
 WORKDIR /var/www/symfony
