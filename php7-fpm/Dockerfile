@@ -90,3 +90,5 @@ RUN echo 'alias sf3="php bin/console"' >> ~/.bashrc
 RUN echo 'session.gc_maxlifetime = 86400' >> /usr/local/etc/php/php.ini
 
 WORKDIR /var/www/symfony
+
+RUN docker-php-ext-install -j$(nproc) pcntl
