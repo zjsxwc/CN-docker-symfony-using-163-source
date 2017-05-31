@@ -38,6 +38,12 @@ services:
         image: redis:alpine
         ports:
             - 6379:6379
+
+    beanstalkd:
+        build: beanstalkd
+        ports:
+            - 11300:11300
+
             
 #    elk:
 #        image: willdurand/elk
