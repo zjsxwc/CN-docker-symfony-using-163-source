@@ -43,6 +43,8 @@ services:
         build: beanstalkd
         ports:
             - 11300:11300
+        volumes:
+            - "./.data/beanstalkd:/var/lib/beanstalkd"
 
             
 #    elk:
