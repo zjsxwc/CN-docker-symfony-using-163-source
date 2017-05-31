@@ -19,4 +19,4 @@ RUN echo "deb-src http://mirrors.163.com/debian-security/ jessie/updates main no
 RUN apt-get update && apt-get install -y curl beanstalkd
 
 EXPOSE 11300
-CMD ["beanstalkd", "-p", "11300"]
+CMD ["beanstalkd", "-p", "11300", "-b", "/var/lib/beanstalkd/binlog"]
