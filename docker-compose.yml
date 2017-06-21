@@ -23,6 +23,7 @@ services:
         links:
             - db
             - redis
+            - elasticsearch
     nginx:
         build: nginx
         ports:
@@ -46,6 +47,24 @@ services:
         volumes:
             - "./.data/beanstalkd:/var/lib/beanstalkd"
 
+    elasticsearch:
+        # NEED RUN `sudo sysctl -w vm.max_map_count=262144` ON HOST MACHINE
+        # ref: https://www.elastic.co/guide/en/elasticsearch/reference/current/docker.html
+        # The default password for the elastic user is changeme
+        image: docker.elastic.co/elasticsearch/elasticsearch:5.4.2
+        ports:
+            - 9200:9200
+        volumes:
+            - "./.data/esdata:/usr/share/elasticsearch/data"
+        ulimits:
+            memlock:
+                soft: -1
+                hard: -1
+        mem_limit: 1g
+        environment:
+            - cluster.name=docker-cluster
+            - bootstrap.memory_lock=true
+            - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
             
 #    elk:
 #        image: willdurand/elk
