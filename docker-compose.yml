@@ -24,6 +24,7 @@ services:
             - db
             - redis
             - elasticsearch
+            - beanstalkd
     nginx:
         build: nginx
         ports:
@@ -42,8 +43,8 @@ services:
 
     beanstalkd:
         build: beanstalkd
-        ports:
-            - 11300:11300
+        #ports:
+        #    - 11300:11300
         volumes:
             - "./.data/beanstalkd:/var/lib/beanstalkd"
 
@@ -53,8 +54,8 @@ services:
         # ref: https://www.elastic.co/guide/en/elasticsearch/reference/current/docker.html
         # The default password for the elastic user is changeme
         # image: docker.elastic.co/elasticsearch/elasticsearch:5.4.1
-        ports:
-            - 9200:9200
+        #ports:
+        #    - 9200:9200
         volumes:
             - "./.data/esdata:/usr/share/elasticsearch/data"
         ulimits:
