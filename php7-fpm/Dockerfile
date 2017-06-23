@@ -50,6 +50,19 @@ RUN "date"
 # Type docker-php-ext-install to see available extensions
 RUN docker-php-ext-install pdo pdo_mysql
 
+
+RUN echo "deb http://mirrors.aliyun.com/debian/ jessie main non-free contrib" >> /etc/apt/sources.list
+RUN echo "deb http://mirrors.aliyun.com/debian/ jessie-updates main non-free contrib" >> /etc/apt/sources.list
+
+RUN echo "deb http://mirrors.aliyun.com/debian/ jessie-backports main non-free contrib" >> /etc/apt/sources.list
+RUN echo "deb-src http://mirrors.aliyun.com/debian/ jessie main non-free contrib" >> /etc/apt/sources.list
+RUN echo "deb-src http://mirrors.aliyun.com/debian/ jessie-updates main non-free contrib" >> /etc/apt/sources.list
+RUN echo "deb-src http://mirrors.aliyun.com/debian/ jessie-backports main non-free contrib" >> /etc/apt/sources.list
+RUN echo "deb http://mirrors.aliyun.com/debian-security/ jessie/updates main non-free contrib" >> /etc/apt/sources.list
+RUN echo "deb-src http://mirrors.aliyun.com/debian-security/ jessie/updates main non-free contrib" >> /etc/apt/sources.list
+
+RUN apt-get update
+
 RUN apt-get install -y \
         libfreetype6-dev \
         libmcrypt-dev \
@@ -66,8 +79,8 @@ RUN docker-php-ext-configure gd \
 RUN docker-php-ext-install -j$(nproc) mysqli
 
 # RUN apt-cache search zlib
-RUN apt-get install zlib1g
-RUN apt-get install zlib1g-dev
+RUN apt-get install zlib1g -y
+RUN apt-get install zlib1g-dev -y
 RUN docker-php-ext-install -j$(nproc) zip
 RUN docker-php-ext-install -j$(nproc) bcmath
 RUN pecl install igbinary
@@ -92,3 +105,4 @@ RUN echo 'session.gc_maxlifetime = 86400' >> /usr/local/etc/php/php.ini
 WORKDIR /var/www/symfony
 
 RUN docker-php-ext-install -j$(nproc) pcntl
+
