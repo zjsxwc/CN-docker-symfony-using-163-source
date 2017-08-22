@@ -42,7 +42,10 @@ services:
         image: redis:alpine
         #ports:
         #    - 6379:6379
-
+        #command: >
+        #  --slaveof 10.0.0.2 6379
+        #  --requirepass fucksecret
+        
     beanstalkd:
         build: beanstalkd
         #ports:
