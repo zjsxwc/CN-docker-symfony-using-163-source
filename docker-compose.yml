@@ -14,8 +14,8 @@ services:
     php:
         build: php7-fpm
         user: "1000:50"
-        ports:
-            - 9000:9000
+        #ports:
+        #    - 9000:9000
         volumes:
             - ${SYMFONY_APP_PATH}:/var/www/symfony
             - ${PHPMYADMIN_ROOT_PATH}:/var/www/phpmyadmin
