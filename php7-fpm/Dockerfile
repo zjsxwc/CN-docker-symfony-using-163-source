@@ -106,3 +106,4 @@ WORKDIR /var/www/symfony
 
 RUN docker-php-ext-install -j$(nproc) pcntl
 
+RUN echo 'session.cookie_secure = 1' >> /usr/local/etc/php/php.ini
