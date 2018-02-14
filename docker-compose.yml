@@ -6,6 +6,7 @@ services:
         user: "1000:50"
         volumes:
             - "./.data/db:/var/lib/mysql"
+        command: --innodb_use_native_aio=0
         environment:
             MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
             MYSQL_DATABASE: ${MYSQL_DATABASE}
