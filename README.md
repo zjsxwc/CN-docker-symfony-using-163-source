@@ -21,7 +21,15 @@ Docker-symfony gives you everything you need for developing Symfony application.
 
 2. Build/run containers with (with and without detached mode)
 
+
+
     ```bash
+    
+    $ sudo useradd -G docker  www
+    $ sudo usermod -aG docker www
+    $ sudo service docker restart
+    $ newgrp - docker
+    
     $ docker-compose build
     $ docker-compose up -d
     ```
