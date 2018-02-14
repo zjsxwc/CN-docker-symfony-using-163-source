@@ -2,6 +2,8 @@
 
 因为我习惯在vagrant外执行composer与symfony命令，所以把php image里的安装指令删掉了
 
+如果要跑symfony4那么要把`php7-fpm/Dockerfile`里的第二行改成`FROM php:7.1-fpm`重新build下就行
+
 # Docker Symfony (PHP7-FPM - NGINX - MySQL - ELK)
 
 [![Build Status](https://travis-ci.org/maxpou/docker-symfony.svg?branch=master)](https://travis-ci.org/maxpou/docker-symfony)
