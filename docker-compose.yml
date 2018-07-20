@@ -21,7 +21,7 @@ services:
             - ${SYMFONY_APP_PATH}:/var/www/symfony
             - ${PHPMYADMIN_ROOT_PATH}:/var/www/phpmyadmin
             - ./logs/symfony:/var/www/symfony/app/logs
-            - ./composer:/./composer
+            - ./.composer:/.composer
         links:
             - db
             - redis
