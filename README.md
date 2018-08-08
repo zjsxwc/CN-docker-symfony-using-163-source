@@ -1,8 +1,8 @@
-# -
+# 说明
 
-因为我习惯在vagrant外执行composer与symfony命令，所以把php image里的安装指令删掉了
+把源改成了国内源，提高访问速度。
 
-如果要跑symfony4那么要把`php7-fpm/Dockerfile-7.1`重命名替换`php7-fpm/Dockerfile`以及把nginx的配置里`app.php`改成`index.php`重新build下就行
+默认是PHP 7.0，如果要跑symfony4那么要把`php7-fpm/Dockerfile-7.1`重命名替换`php7-fpm/Dockerfile`以及把nginx的配置里`app.php`改成`index.php`重新build下就行
 
 # Docker Symfony (PHP7-FPM - NGINX - MySQL - ELK)
 
