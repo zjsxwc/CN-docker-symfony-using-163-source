@@ -106,6 +106,9 @@ WORKDIR /var/www/symfony
 
 RUN docker-php-ext-install -j$(nproc) pcntl
 
+RUN apt-get -y install libicu-dev
+RUN docker-php-ext-install -j$(nproc) intl
+
 # RUN echo 'session.cookie_secure = 1' >> /usr/local/etc/php/php.ini
 
 RUN echo 'nameserver 119.29.29.29' >> /etc/resolv.conf
