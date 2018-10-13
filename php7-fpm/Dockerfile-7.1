@@ -113,5 +113,5 @@ RUN docker-php-ext-install -j$(nproc) intl
 
 RUN echo 'nameserver 119.29.29.29' >> /etc/resolv.conf
 
-RUN apt-get install zip
+RUN apt-get install -y zip
 
