@@ -129,5 +129,8 @@ RUN echo 'pm = dynamic' >> /usr/local/etc/php-fpm.d/www.conf \
 
 
 
+RUN echo 'session.gc_maxlifetime = 604800' >> /usr/local/etc/php/php.ini
+
+
 
 
