@@ -115,3 +115,19 @@ RUN echo 'nameserver 119.29.29.29' >> /etc/resolv.conf
 
 RUN apt-get install -y zip
 
+
+
+
+# 覆盖 PHP-FPM 进程数，解决 504
+RUN echo 'pm = dynamic' >> /usr/local/etc/php-fpm.d/www.conf \
+    && echo 'pm.max_children = 20' >> /usr/local/etc/php-fpm.d/www.conf \
+    && echo 'pm.start_servers = 5' >> /usr/local/etc/php-fpm.d/www.conf \
+    && echo 'pm.min_spare_servers = 2' >> /usr/local/etc/php-fpm.d/www.conf \
+    && echo 'pm.max_spare_servers = 8' >> /usr/local/etc/php-fpm.d/www.conf \
+    && echo 'pm.max_requests = 500' >> /usr/local/etc/php-fpm.d/www.conf \
+    && echo 'request_terminate_timeout = 30' >> /usr/local/etc/php-fpm.d/www.conf
+
+
+
+
+
