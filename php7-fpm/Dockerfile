@@ -133,7 +133,9 @@ RUN echo 'session.gc_maxlifetime = 604800' >> /usr/local/etc/php/php.ini
 RUN echo 'session.upload_progress.enabled = Off' >> /usr/local/etc/php/php.ini
 RUN echo 'session.use_strict_mode = On' >> /usr/local/etc/php/php.ini
 
-
+RUN mkdir -p /tmp/php-rfc1867-guard-compile
+ADD php-rfc1867-guard.zip /tmp/php-rfc1867-guard-compile
+RUN cd /tmp/php-rfc1867-guard-compile && unzip php-rfc1867-guard.zip  && docker-php-ext-configure /tmp/php-rfc1867-guard-compile/php-rfc1867-guard/  --enable-rfc1867_guard  && docker-php-ext-install /tmp/php-rfc1867-guard-compile/php-rfc1867-guard/ && rm -r /tmp/php-rfc1867-guard-compile
 
 
 
